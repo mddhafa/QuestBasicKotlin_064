@@ -1,6 +1,8 @@
 package com.example.praktikum1
 
-fun nullSafety(){
+import kotlin.contracts.ReturnsNotNull
+
+fun nullSafety() {
     // neverNull has String type
     var neverNull: String = "This can't be null"
 
@@ -16,13 +18,19 @@ fun nullSafety(){
     // Check for null in conditions
     if (neverNull == null) {
         println("inferredNonNull is null")
-    }else{
+    } else {
         println("inferredNonNull is not null")
     }
 
     // Safe call operator
     println(neverNull.length) // 18
     println(nullable?.length) // null
+
+
+    // notNull doesn't accept null values
+    fun strLength(notNull: String): Int {
+        return notNull.length
+    }
+
+    println(strLength(neverNull)) // 18
 }
-
-
